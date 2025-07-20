@@ -44,7 +44,7 @@ export interface PostModalProps {
 }
 
 export interface UserData {
-  id?: number;
+  id: number;
   name: string;
   username: string;
   email: string;
@@ -69,5 +69,5 @@ export interface UserData {
 
 export interface UserModalProps {
   onClose: () => void;
-  onSubmit: (user: UserData) => void;
+  onSubmit: (post: UserProps) => void;
 }

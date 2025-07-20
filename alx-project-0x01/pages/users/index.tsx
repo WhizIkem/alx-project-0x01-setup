@@ -7,14 +7,14 @@ import { UserData, UserProps } from "@/interfaces";
 
 const Users: React.FC<{ posts: UserProps[] }> = (props) => {
   const users = props.posts;
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [userList, setUserList] = useState<UserProps[]>(users);
 
   const handleAddUser = (newUser: UserData) => {
     const newUserWithId = { ...newUser, id: userList.length + 1 };
     setUserList((prev) => [...prev, newUserWithId]);
   };
-  console.log("isModalOpen:", isModalOpen);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -24,13 +24,7 @@ const Users: React.FC<{ posts: UserProps[] }> = (props) => {
 
           <Button />
 
-          <button
-            onClick={() => {
-              console.log("Add User Button Clicked");
-              setIsModalOpen(true);
-            }}
-            className="bg-blue-700 text-white px-4 py-2 rounded-full ml-2"
-          >
+          <button onClick={() => setModalOpen(true)} className="bg-blue-700 text-white px-4 py-2 rounded-full ml-2">
             Add User
           </button>
 
@@ -44,13 +38,7 @@ const Users: React.FC<{ posts: UserProps[] }> = (props) => {
       </main>
 
       {isModalOpen && (
-        <>
-          {console.log("Modal is open")}
-          <UserModal
-            onClose={() => setIsModalOpen(false)}
-            onSubmit={handleAddUser}
-          />
-        </>
+        <UserModal onClose={() => setModalOpen(false)} onSubmit={handleAddUser} />
       )}
     </div>
   );
